@@ -53,7 +53,8 @@ function NumberScreen() {
     e.preventDefault() ;
     console.log(phone) ;
     localStorage.setItem("phone",phone);
-    if(phone < 1000000000){
+    console.log(phone.length);
+    if(phone.length < 15){
       toast.error(" Invalid Phone Number ") ;
       setTimeout(() => {
         window.location = "/";
