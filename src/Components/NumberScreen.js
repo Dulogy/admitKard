@@ -41,6 +41,8 @@ import ReactDOM from "react-dom";
 import MuiPhoneNumber from "material-ui-phone-number";
 
 function NumberScreen() {
+  localStorage.setItem("verified",false) ;
+  localStorage.setItem("phoneNumber",false);
   const [phone, setPhone] = useState("");
 
   const handleOnChange = value => {
@@ -57,6 +59,8 @@ function NumberScreen() {
         window.location = "/";
       }, 4000); 
     }else{
+      localStorage.setItem("Number",true);
+      localStorage.setItem("phone",true)
       toast.info("OTP Sent");
       setTimeout(() => {
         window.location = "/otp";
