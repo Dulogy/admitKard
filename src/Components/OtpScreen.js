@@ -45,6 +45,19 @@ const  OtpScreen =() => {
   const OTP = 1234;
 
   const [otp, setOtp] = useState("");
+  const isNumberEntered = localStorage.getItem("Number");
+  const isVerified = localStorage.getItem("verified");
+  console.log(isVerified);
+
+  console.log(isNumberEntered);
+  if(isNumberEntered){
+    console.log("hello")
+    // window.location = "/otp";
+  }else{
+    console.log("false")
+    window.location = "/"
+  }
+  
 
   const handleOnChange = value => {
     setOtp(value);
@@ -59,11 +72,19 @@ const  OtpScreen =() => {
         window.location = "/otp";
       }, 4000); 
     }else{
+      localStorage.setItem("verified",true);
       toast.success("OTP Verified");
       setTimeout(() => {
         window.location = "/welcome";
       }, 3000);
     }
+  }
+
+  const handleLinkClick = (e) =>{
+    e.preventDefault();
+    setTimeout(()=>{
+      toast.info("OTP Sent")
+    },3000);
   }
   return (
     <Container component="main" maxWidth="sm">
@@ -132,7 +153,8 @@ const  OtpScreen =() => {
             </Grid>
             <br></br><br></br>
             <Typography>
-                Didn't Receive verification code? &ensp; <Link style={{textDecoration: 'none'}}>Resend</Link>
+                Didn't Receive verification code? &ensp;
+                 <Link style={{textDecoration: 'none'}} onClick={handleLinkClick}>Resend</Link>
               </Typography>
             <Grid item>
               <Button style={{backgroundColor:"#ffc266",cursor :"pointer",color : "white",border : "0px", borderRadius : "12px",height : "40px",width:"140px",fontSize:"16px"}}
@@ -154,3 +176,4 @@ const  OtpScreen =() => {
 };
 
 export default OtpScreen;
+
