@@ -1,5 +1,10 @@
 import React from "react";
 const welcomeScreen=() => {
+    const isVerified = localStorage.getItem("verified");
+    console.log(isVerified)
+    if(!isVerified){
+        window.location = ("/otp")
+    }
     return (
         <>
            <div className="mainPart" style={{display:"flex",flexDirection:"column"}}>
